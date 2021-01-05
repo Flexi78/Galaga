@@ -37,8 +37,22 @@ public class Player : MonoBehaviour
         float hAxis = Input.GetAxisRaw("Horizontal");
 
         //cinématique
-        Vector3 moveVect = hAxis * Vector3.right * m_TranslationSpeed * Time.deltaTime;
-        m_Transform.Translate(moveVect, Space.Self);
+        if (m_Transform.transform.position.x >= 8.300f && m_Transform.transform.position.x <= 21.600f)
+        {
+            Vector3 moveVect = hAxis * Vector3.right * m_TranslationSpeed * Time.deltaTime;
+            m_Transform.Translate(moveVect, Space.Self);
+        }
+        if(m_Transform.transform.position.x > 21.600f)
+        {
+            m_Transform.Translate(0.1f * Vector3.left * m_TranslationSpeed * Time.deltaTime, Space.Self);
+        }
+        if (m_Transform.transform.position.x < 8.300f)
+        {
+            m_Transform.Translate(0.1f * Vector3.right * m_TranslationSpeed * Time.deltaTime, Space.Self);
+        }
+
+
+
 
         bool isFiring = Input.GetButton("Fire1");
 
