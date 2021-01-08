@@ -40,7 +40,9 @@ public class Player : MonoBehaviour
         if (m_Transform.transform.position.x >= 8.300f && m_Transform.transform.position.x <= 21.600f)
         {
             Vector3 moveVect = hAxis * Vector3.right * m_TranslationSpeed * Time.deltaTime;
+            Vector3 roteVect = hAxis * Vector3.down * m_TranslationSpeed  * Time.deltaTime;
             m_Transform.Translate(moveVect, Space.Self);
+            m_Transform.Rotate(roteVect, Space.Self);
         }
         if(m_Transform.transform.position.x > 21.600f)
         {
