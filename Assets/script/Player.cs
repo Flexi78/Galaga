@@ -8,12 +8,12 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject m_BallPrefab;
     [SerializeField] Transform m_BallSpawnPoint;
     [SerializeField] float m_BallInitTranslationSpeed;
-    [SerializeField] float m_BallShotCooldownDuration;
-    float m_BallShotNextTime; // temps dans le futur auquel le tir est autorisé
+
 
     [Header("Player settings")]
     [SerializeField] float m_TranslationSpeed;
     [SerializeField] int m_LifeNumber;
+    public bool CanShoot = true;
 
 
 
@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_BallShotNextTime = Time.time;
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody>();
     }
@@ -55,13 +54,12 @@ public class Player : MonoBehaviour
 
 
 
-
         bool isFiring = Input.GetButton("Fire1");
 
-        if (isFiring && Time.time > m_BallShotNextTime)
+        if (isFiring && CanShoot)
         {
+            CanShoot = false;
             Shoot();
-            m_BallShotNextTime = Time.fixedTime + m_BallShotCooldownDuration;
         }
     }
 

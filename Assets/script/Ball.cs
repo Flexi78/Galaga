@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
-{
-    [SerializeField] float m_LifeDuration;
-
+{   
+    [Header("Ball shot")]
+    [SerializeField] float m_LifeDuration; //temps de vie de la balle
 
     private void Awake()
     {
@@ -16,7 +16,6 @@ public class Ball : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, m_LifeDuration);
-
     }
 
     // Update is called once per frame
@@ -24,5 +23,20 @@ public class Ball : MonoBehaviour
     {
 
 
+    }
+
+    private void OnDestroy()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CanShoot = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ennemi"))
+        {
+            Destroy(collision.gameObject);
+            Debug.Log("BOUM");
+            Destroy(this.gameObject);
+        }
     }
 }
