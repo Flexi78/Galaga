@@ -8,13 +8,13 @@ public class Ennemi : MonoBehaviour
     [SerializeField] Transform m_SpawnPoint;
     [SerializeField] float m_TranslationSpeed;
     [SerializeField] int m_LifeNumber;
+    public bool CanShoot = true;
+
 
     [Header("Ball shot")]
     [SerializeField] GameObject m_BallPrefab;
     [SerializeField] Transform m_BallSpawnPoint;
     [SerializeField] float m_BallInitTranslationSpeed;
-    [SerializeField] float m_BallShotCooldownDuration;
-    float m_BallShotNextTime; // temps dans le futur auquel le tir est autorisé
 
 
 
@@ -29,4 +29,13 @@ public class Ennemi : MonoBehaviour
     {
         
     }
+
+    /*private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Ball"))
+        {
+            Destroy(this);
+        }
+        
+    }*/
 }
