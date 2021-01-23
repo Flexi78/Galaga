@@ -12,22 +12,30 @@ public class Player : MonoBehaviour
 
     [Header("Player settings")]
     [SerializeField] float m_TranslationSpeed;
-    [SerializeField] int m_LifeNumber;
+    [SerializeField] int m_HealtPoints = 3;
     public bool CanShoot = true;
 
+    /*[Header("Ennemi bullet settings")]
+    public GameObject AllienBullet;
+    [SerializeField] float m_BulletInitTranslationSpeed;
+    bool AlienCanShoot = true;
+    public float AlienTimeToFire = 2f;*/
+
+    public int LayerDefault;
 
 
     [SerializeField] EasingFunction.Ease m_TranslateEasingFunction;
 
     Transform m_Transform;
     Rigidbody m_Rigidbody;
-
+    Rigidbody m_BulletRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody>();
+        LayerDefault = LayerMask.GetMask("Default");
     }
 
     // Update is called once per frame
@@ -61,6 +69,11 @@ public class Player : MonoBehaviour
             CanShoot = false;
             Shoot();
         }
+
+       /* if (AlienCanShoot)
+        {
+            AlienShoot();
+        }*/
     }
 
     public void Shoot()
@@ -70,4 +83,39 @@ public class Player : MonoBehaviour
         Rigidbody newBallRB = newBallGO.GetComponent<Rigidbody>();
         newBallRB.AddForce(m_BallSpawnPoint.up  * m_BallInitTranslationSpeed, ForceMode.VelocityChange);
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            Debug.Log("m_HealtPoints--");
+        }
+
+    }
+
+    /*void AlienShoot()
+    {
+        Debug.DrawRay(transform.position, Vector3.up * 7);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, Mathf.Infinity, LayerDefault))
+        {
+            if (hit.collider.CompareTag("Ennemi") && AlienCanShoot)
+            {
+                StartCoroutine(Pause());
+                GameObject Bullet = Instantiate(AllienBullet, hit.point, Quaternion.identity);
+                Rigidbody newBullet = Bullet.GetComponent<Rigidbody>();
+                newBullet.AddForce(-hit.point * m_BulletInitTranslationSpeed, ForceMode.VelocityChange);
+
+            }
+        }
+
+    }
+
+    IEnumerator Pause()
+    {
+        AlienCanShoot = false;
+        yield return new WaitForSeconds(AlienTimeToFire);
+        AlienCanShoot = true;
+    }*/
 }

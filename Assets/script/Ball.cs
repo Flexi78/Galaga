@@ -22,7 +22,6 @@ public class Ball : MonoBehaviour
     void Update()
     {
 
-
     }
 
     private void OnDestroy()

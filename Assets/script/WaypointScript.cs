@@ -26,7 +26,7 @@ public class WaypointScript : MonoBehaviour
         }
     }
 
-    private void Update()
+   /* private void Update()
     {
        if (i < transform.childCount)
         {
@@ -47,14 +47,14 @@ public class WaypointScript : MonoBehaviour
                     }
                 }*/
 
-                ObjectToMove.transform.position = Vector3.MoveTowards(ObjectToMove.transform.position, Waypoint[i].transform.position, speed * Time.deltaTime);
+          /*      ObjectToMove.transform.position = Vector3.MoveTowards(ObjectToMove.transform.position, Waypoint[i].transform.position, speed * Time.deltaTime);
             }
             else
             {
                 i++;
             }
         }
-    }
+    }*/
 
     Vector3 BezierPath(Vector3 p0, Vector3 p1, Vector3 p2, float progress)
     {
