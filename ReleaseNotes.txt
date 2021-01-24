@@ -1,0 +1,25 @@
+	
+	Projet Galaga
+
+
+
+Equipe de production : 
+
+Noah FARJON : Modèles 3D, dev
+Félix LITOu : dev 
+
+
+
+Mécaniques et contrôles du jeu :
+
+Déplacement à droite et à gauche (flèches directionnelles)
+Tir (touche ctrl)
+Mettre en pause la partie / Ouvrir le menu (touche echap)
+
+
+
+Répartition de la production :
+
+Noah s'est occupé de toute la partie modélisation 3D et a repris le code du jeu pour le débugger et l'optimiser.
+Félix s'est occupé de produire la première partie des scripts et le menu.
+
