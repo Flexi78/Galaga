@@ -48,24 +48,19 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) // press 'echap' to pause menu
+        if (Input.GetKeyDown(KeyCode.Escape) && IsPlaying) // press 'echap' to pause menu
         {
-            if (IsPaused) 
-            {
-                Debug.Log("paaauuuussssseeee");
-                DeactivateMenu();
-                m_GameState = GameState.gamePlay; 
-            }
+            Time.timeScale = 0f; //pause all Gameobjects
+            AudioListener.pause = true;
 
-            if (IsPlaying)
-            {
-                Time.timeScale = 0f; //pause all Gameobjects
-                AudioListener.pause = true;
-
-                ActivateMenu(); 
-                m_GameState = GameState.gamePause;
-            }          
-
+            ActivateMenu();
+            m_GameState = GameState.gamePause;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && IsPaused) 
+        {
+            Debug.Log("paaauuuussssseeee");
+            DeactivateMenu();
+            Debug.Log("menu desactive");
         }
 
         if (Input.GetKeyDown(KeyCode.A) && IsPlaying) //press 'a' to victory
@@ -116,7 +111,6 @@ public class GameManagerScript : MonoBehaviour
     {
         VictoryUI.SetActive(false);
     }
-    
     
     
     
