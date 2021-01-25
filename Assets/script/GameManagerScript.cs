@@ -58,9 +58,7 @@ public class GameManagerScript : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && IsPaused) 
         {
-            Debug.Log("paaauuuussssseeee");
             DeactivateMenu();
-            Debug.Log("menu desactive");
         }
 
         if (Input.GetKeyDown(KeyCode.A) && IsPlaying) //press 'a' to victory

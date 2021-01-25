@@ -27,10 +27,9 @@ using UnityEngine;
         //Debug.Log(this.transform.position);
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         GameObject.FindGameObjectWithTag("Ennemi").GetComponent<Ennemi>().CanShoot = true;
     }
 
-}
-*/
+}*/
