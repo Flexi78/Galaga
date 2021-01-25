@@ -51,8 +51,6 @@ public class Ennemi : MonoBehaviour
             waypointIndex += 1;
         }
 
-        if (waypointIndex == waypoints.Length)
-            waypointIndex = 0;
     }
 
     public void Shoot()
