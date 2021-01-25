@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemiBullet : MonoBehaviour
+/*public class EnnemiBullet : MonoBehaviour
 {
     [Header("Ball shot")]
     //[SerializeField] GameObject m_BallPrefab;
@@ -33,3 +33,4 @@ public class EnnemiBullet : MonoBehaviour
     }
 
 }
+*/

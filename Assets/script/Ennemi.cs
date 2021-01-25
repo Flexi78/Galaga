@@ -2,12 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Ennemi : MonoBehaviour
-{    
-    [Header("Ennemi settings")]
-    //[SerializeField] Transform m_SpawnPoint;
-    [SerializeField] float m_TranslationSpeed;
-    [SerializeField] int m_LifeNumber;
+{
+
+    [SerializeField]
+    Transform[] waypoints;
+
+    [SerializeField]
+    float moveSpeed = 2f;
+
+    int waypointIndex = 0;
+
+    void Start()
+    {
+        transform.position = waypoints[waypointIndex].transform.position;
+    }
+
+    void Update()
+    {
+        Move();
+    }
+
+    void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position,
+                                                waypoints[waypointIndex].transform.position,
+                                                moveSpeed * Time.deltaTime);
+        Debug.Log(waypointIndex);
+
+        if (transform.position == waypoints[waypointIndex].transform.position)
+        {
+            Debug.Log("ez");
+            waypointIndex += 1;
+        }
+
+        if (waypointIndex == waypoints.Length)
+            waypointIndex = 0;
+    }
+
+}
+/*public class Ennemi : MonoBehaviour
+{
+
+
+    [SerializeField]
+    Transform[] waypoints;
+
+    [SerializeField]
+    float moveSpeed = 2f;
+
+    int waypointIndex = 0;
+
     public bool CanShoot = true;
 
 
@@ -30,25 +76,16 @@ public class Ennemi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
-        spawn = GetComponent<Transform>();
-        //Waypoint = new GameObject[transform.childCount];
-        //Waypoint = GetComponent<WaypointScript>().Waypoint;
-        Debug.Log("wayoints : "+Waypoint.Length);
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            Waypoint[i] = transform.GetChild(i).gameObject;
-        }
+        transform.position = waypoints[waypointIndex].transform.position;
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-       // Move();
+       Move();
         float rand = Random.Range(-20.0f, 20.0f);
 
-        bool isPressed = Input.GetButton("Fire2"); //si le joueur appuie sur "alt"
 
         if (rand > 15.8f && CanShoot)
         {
@@ -56,23 +93,6 @@ public class Ennemi : MonoBehaviour
             Shoot();
         }
 
-        if (NoEnnemi < transform.childCount)
-        {
-            if (this.transform.position != Waypoint[NoEnnemi].transform.position)
-            {
-                this.transform.position = Vector3.MoveTowards(this.transform.position, Waypoint[NoEnnemi].transform.position, speed * Time.deltaTime);
-                NoEnnemi++;
-            }
-            else
-            {
-                NoEnnemi++;
-            }
-        }
-
-        if (isPressed)
-        {
-            Debug.LogWarning("appuie sur alt");
-        }
 
     }
 
@@ -93,18 +113,18 @@ public class Ennemi : MonoBehaviour
 
     public void Move()
     {
-        /*Vector3 vect = new Vector3(0,0,1);
-        m_Rigidbody.AddForce(vect, ForceMode.VelocityChange);
-        StartCoroutine(Pause());
-        m_Rigidbody.AddForce(-vect, ForceMode.VelocityChange);*/
 
-        //this.transform.Translate(0.5f * Vector3.up * m_TranslationSpeed * Time.deltaTime, Space.Self);
-        //StartCoroutine(Pause());
-        //this.transform.Translate(0.5f * Vector3.down * m_TranslationSpeed * Time.deltaTime, Space.Self);
-        m_Rigidbody.AddForce(2*Vector3.up * m_TranslationSpeed * Time.deltaTime, ForceMode.Impulse);
-        StartCoroutine(Pause());
-        m_Rigidbody.AddForce(-2*Vector3.up * m_TranslationSpeed * Time.deltaTime, ForceMode.Impulse);
+        transform.position = Vector2.MoveTowards(transform.position,
+                                                waypoints[waypointIndex].transform.position,
+                                                moveSpeed * Time.deltaTime);
 
+        if (transform.position == waypoints[waypointIndex].transform.position)
+        {
+            waypointIndex += 1;
+        }
+
+        if (waypointIndex == waypoints.Length)
+            waypointIndex = 0;
 
     }
 
@@ -115,3 +135,4 @@ public class Ennemi : MonoBehaviour
 }
 
 
+*/
