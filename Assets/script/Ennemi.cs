@@ -9,10 +9,15 @@ public class Ennemi : MonoBehaviour
     [SerializeField]
     Transform[] waypoints;
 
+    [SerializeField] GameObject m_BallPrefab;
+
     [SerializeField]
     float moveSpeed = 2f;
 
     int waypointIndex = 0;
+
+    public bool CanShoot = true;
+
 
     void Start()
     {
@@ -22,6 +27,15 @@ public class Ennemi : MonoBehaviour
     void Update()
     {
         Move();
+
+        float rand = Random.Range(-20.0f, 20.0f);
+
+
+        if (rand > 19.8f && CanShoot)
+        {
+            CanShoot = false;
+            Shoot();
+        }
     }
 
     void Move()
@@ -39,6 +53,12 @@ public class Ennemi : MonoBehaviour
 
         if (waypointIndex == waypoints.Length)
             waypointIndex = 0;
+    }
+
+    public void Shoot()
+    {
+        Debug.LogWarning("Ennemi shoot ! ");
+        GameObject newBallGO = Instantiate(m_BallPrefab, this.transform);
     }
 
 }

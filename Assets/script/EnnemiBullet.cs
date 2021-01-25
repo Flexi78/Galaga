@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public class EnnemiBullet : MonoBehaviour
+public class EnnemiBullet : MonoBehaviour
 {
     [Header("Ball shot")]
     //[SerializeField] GameObject m_BallPrefab;
@@ -27,9 +27,9 @@ using UnityEngine;
         //Debug.Log(this.transform.position);
     }
 
-    /*private void OnDestroy()
+    private void OnDestroy()
     {
         GameObject.FindGameObjectWithTag("Ennemi").GetComponent<Ennemi>().CanShoot = true;
     }
 
-}*/
+}

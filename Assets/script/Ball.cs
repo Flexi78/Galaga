@@ -24,10 +24,10 @@ public class Ball : MonoBehaviour
 
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CanShoot = true;
-    }
+    }*/
 
     private void OnCollisionEnter(Collision collision)
     {
